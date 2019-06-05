@@ -77,28 +77,43 @@ namespace LoseChiCalendar
 			canvas . Items . Add ( panel ) ;
 
 
-			Label yearMonthLabel = new Label { Text = DateTime . Now . ToString ( "MMMM yyyy" ) } ;
+			Label yearMonthLabel = new Label { Text = DateTime . Now . ToString ( "MMMM yyyy" ) ,HorizontalAlign=ContentHorizontalAlign.Stretch} ;
 
 			panel . Items . Add ( yearMonthLabel ) ;
 
-			panel [ yearMonthLabel ] = ContentAlign . Center ;
 
 			FIGletLabel dateLabel = new FIGletLabel { Text = DateTime.Now.Day.ToString(), CharacterWidth = CharacterWidth.Smush };
 
 			panel . Items . Add ( dateLabel ) ;
 
-			panel[dateLabel] = ContentAlign.Center;
 
-			Label dayNameLabel = new Label { Text = DateTime.Now.ToString("dddd") };
+			Label dayNameLabel = new Label { Text = DateTime.Now.ToString("dddd"), HorizontalAlign = ContentHorizontalAlign.Stretch };
 			panel.Items.Add(dayNameLabel);
 
-			panel[dayNameLabel] = ContentAlign.Center;
-
-			Button exitButton = new Button { Name = nameof ( exitButton ) , Text = "Exit" } ;
+			Button exitButton = new Button { Name = nameof ( exitButton ) , Text = "Exit", HorizontalAlign = ContentHorizontalAlign.Left,BoarderStyle=LineStyle.Empty } ;
 
             exitButton.Pressed += ExitButton_Pressed;
 
 			panel . Items . Add ( exitButton ) ;
+
+			var firstMonthDay = new DateTime ( DateTime . Now . Year , DateTime . Now . Month , 1 ) ;
+
+			var days=DateTime . DaysInMonth ( DateTime . Now . Year , DateTime . Now . Month ) ;
+
+			int y = 0 ;
+
+
+
+            for ( int i = 0 ; i < days ; i++ )
+			{
+				for (int x = 0; x < 20; x++)
+				{
+					Button button = new Button { Name = $"button{i}", Text = $"{x}{y}" };
+					canvas[button] = new Point(6 * x, y);
+				}
+
+			}
+
 
             return ViewRoot;
 
