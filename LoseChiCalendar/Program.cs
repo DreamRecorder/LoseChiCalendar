@@ -14,6 +14,8 @@ using DreamRecorder . FoggyConsole . Controls ;
 using DreamRecorder . ToolBox . CommandLine ;
 using DreamRecorder . ToolBox . General ;
 
+using LoseChiCalendar . Pages ;
+
 using Microsoft . Extensions . Logging ;
 
 using WenceyWang . FIGlet ;
@@ -22,9 +24,9 @@ namespace LoseChiCalendar
 {
 
 	/// <summary>
-	/// 黄欣然用来找工作的玄学指导老黄历
-	/// </summary>
-	public sealed class Program : ApplicationBase <Program , ProgramExitCode , ProgramSetting , ProgramSettingCatalog>
+    /// 黄欣然用来找工作的玄学指导老黄历
+    /// </summary>
+    public sealed class Program : ApplicationBase <Program , ProgramExitCode , ProgramSetting , ProgramSettingCatalog>
 	{
 
 		private static List <string> ThingsTodo { get ; set ; } = new List <string> ( ) { "a" , "b" , "c" } ;
@@ -63,131 +65,132 @@ namespace LoseChiCalendar
 
 		public override Frame PrepareViewRoot ( )
 		{
-			CultureInfo ci = new CultureInfo ( "en-US" ) ;
-
-			DateTimeFormatInfo dtfi = ci . DateTimeFormat ;
 
 			ViewRoot = new Frame ( ) ;
-			Canvas canvas = new Canvas ( ) ;
-			Page   page   = new Page { Content = canvas } ;
+			Page   page   = new CalendarPage() ;
 			ViewRoot . NavigateTo ( page ) ;
 
-			StackPanel panel = new StackPanel ( ) ;
+			//Canvas canvas = new Canvas ( ) ;
 
-			canvas . Items . Add ( panel ) ;
+			//CultureInfo ci = new CultureInfo ( "en-US" ) ;
 
+			//DateTimeFormatInfo dtfi = ci . DateTimeFormat ;
+			//StackPanel panel = new StackPanel ( ) ;
 
-			Label yearMonthLabel = new Label
-									{
-										Text            = DateTime . Now . ToString ( "MMMM yyyy" ) ,
-										HorizontalAlign = ContentHorizontalAlign . Stretch
-									} ;
-
-			panel . Items . Add ( yearMonthLabel ) ;
+			//canvas . Items . Add ( panel ) ;
 
 
-			FIGletLabel dateLabel = new FIGletLabel
-									{
-										Text           = DateTime . Now . Day . ToString ( ) ,
-										CharacterWidth = CharacterWidth . Smush
-									} ;
+			//Label yearMonthLabel = new Label
+			//						{
+			//							Text            = DateTime . Now . ToString ( "MMMM yyyy" ) ,
+			//							HorizontalAlign = ContentHorizontalAlign . Stretch
+			//						} ;
 
-			panel . Items . Add ( dateLabel ) ;
-
-
-			Label dayNameLabel = new Label
-								{
-									Text            = DateTime . Now . ToString ( "dddd" ) ,
-									HorizontalAlign = ContentHorizontalAlign . Stretch
-								} ;
-			panel . Items . Add ( dayNameLabel ) ;
-
-			Button exitButton = new Button
-								{
-									Name            = nameof ( exitButton ) ,
-									Text            = "Exit" ,
-									HorizontalAlign = ContentHorizontalAlign . Left
-								} ;
-
-			exitButton . Pressed += ExitButton_Pressed ;
-
-			panel . Items . Add ( exitButton ) ;
-
-			var firstMonthDay = new DateTime ( DateTime . Now . Year , DateTime . Now . Month , 1 ) ;
-
-			var daysInMonth = DateTime . DaysInMonth ( DateTime . Now . Year , DateTime . Now . Month ) ;
-
-			var today = DateTime . Now . Day ;
-
-			int y = 0 ;
-
-			canvas = new Canvas ( ) ;
-
-			panel . Items . Add ( canvas ) ;
-
-			var dayNames = dtfi . AbbreviatedDayNames ;
+			//panel . Items . Add ( yearMonthLabel ) ;
 
 
-            for ( int i = 0 ; i < 7 ; i++ )
-			{
-				Label label = new Label ( )
-							{
-								Text            = (dayNames[ i ]) ,
-								HorizontalAlign = ContentHorizontalAlign . Left,
-								Width=3,
-							} ;
+			//FIGletLabel dateLabel = new FIGletLabel
+			//						{
+			//							Text           = DateTime . Now . Day . ToString ( ) ,
+			//							CharacterWidth = CharacterWidth . Smush
+			//						} ;
 
-                if (i == 0 || i == 6)
-                {
-                    label.ForegroundColor = ConsoleColor.DarkRed;
-                }
+			//panel . Items . Add ( dateLabel ) ;
 
-                canvas . Items . Add ( label ) ;
 
-				canvas [ label ] = new Point ( (6 * i)+1 , y ) ;
-			}
+			//Label dayNameLabel = new Label
+			//					{
+			//						Text            = DateTime . Now . ToString ( "dddd" ) ,
+			//						HorizontalAlign = ContentHorizontalAlign . Stretch
+			//					} ;
+			//panel . Items . Add ( dayNameLabel ) ;
 
-			y++ ;
+			//Button exitButton = new Button
+			//					{
+			//						Name            = nameof ( exitButton ) ,
+			//						Text            = "Exit" ,
+			//						HorizontalAlign = ContentHorizontalAlign . Left
+			//					} ;
 
-			int weekday = ( int ) firstMonthDay . DayOfWeek ;
+			//exitButton . Pressed += ExitButton_Pressed ;
 
-			for ( int i = 1 ; i <= daysInMonth ; i++ )
-			{
-				Button button = new Button
-								{
-									Name            = $"button{i}" ,
-									Text            = $"{i}" ,
-									HorizontalAlign = ContentHorizontalAlign . Right,
-									Width = 5,
-								};
+			//panel . Items . Add ( exitButton ) ;
 
-				if ( i<11 )
-				{
-					button . KeyBind = i . ToString ( ) . Last ( ) ;
-				}
+			//DateTime firstMonthDay = new DateTime ( DateTime . Now . Year , DateTime . Now . Month , 1 ) ;
 
-                if (weekday == 0 || weekday == 6)
-                {
-                    button.ForegroundColor = ConsoleColor.Red;
-                }
+			//int daysInMonth = DateTime . DaysInMonth ( DateTime . Now . Year , DateTime . Now . Month ) ;
 
-				if (i== today )
-				{
-					button.ForegroundColor = ConsoleColor.Blue;
-				}
+			//int today = DateTime . Now . Day ;
 
-                canvas . Items . Add ( button ) ;
+			//int y = 0 ;
 
-				canvas [ button ] = new Point ( 6 * weekday , y ) ;
+			//canvas = new Canvas ( ) ;
 
-				weekday++ ;
+			//panel . Items . Add ( canvas ) ;
 
-				while ( weekday >= 7 )
-				{
-					weekday -= 7 ;
-					y++ ;
-				}
-			}
+			//string[] dayNames = dtfi . AbbreviatedDayNames ;
+
+
+   //         for ( int i = 0 ; i < 7 ; i++ )
+			//{
+			//	Label label = new Label ( )
+			//				{
+			//					Text            = (dayNames[ i ]) ,
+			//					HorizontalAlign = ContentHorizontalAlign . Left,
+			//					Width=3,
+			//				} ;
+
+   //             if (i == 0 || i == 6)
+   //             {
+   //                 label.ForegroundColor = ConsoleColor.DarkRed;
+   //             }
+
+   //             canvas . Items . Add ( label ) ;
+
+			//	canvas [ label ] = new Point ( (6 * i)+1 , y ) ;
+			//}
+
+			//y++ ;
+
+			//int weekday = ( int ) firstMonthDay . DayOfWeek ;
+
+			//for ( int i = 1 ; i <= daysInMonth ; i++ )
+			//{
+			//	Button button = new Button
+			//					{
+			//						Name            = $"button{i}" ,
+			//						Text            = $"{i}" ,
+			//						HorizontalAlign = ContentHorizontalAlign . Right,
+			//						Width = 5,
+			//					};
+
+			//	if ( i<11 )
+			//	{
+			//		button . KeyBind = i . ToString ( ) . Last ( ) ;
+			//	}
+
+   //             if (weekday == 0 || weekday == 6)
+   //             {
+   //                 button.ForegroundColor = ConsoleColor.Red;
+   //             }
+
+			//	if (i== today )
+			//	{
+			//		button.ForegroundColor = ConsoleColor.Blue;
+			//	}
+
+   //             canvas . Items . Add ( button ) ;
+
+			//	canvas [ button ] = new Point ( 6 * weekday , y ) ;
+
+			//	weekday++ ;
+
+			//	while ( weekday >= 7 )
+			//	{
+			//		weekday -= 7 ;
+			//		y++ ;
+			//	}
+			//}
 
 
 			return ViewRoot ;
@@ -195,7 +198,7 @@ namespace LoseChiCalendar
 
 		private void ExitButton_Pressed ( object sender , EventArgs e ) { Exit ( ProgramExitCode . Success ) ; }
 
-		public string GetLicense ( ) => typeof ( Program ) . GetResourceFile ( @".License.AGPL.txt" ) ;
+		public string GetLicense ( ) => typeof ( Program ) . GetResourceFile ( @"License.AGPL.txt" ) ;
 
 	}
 

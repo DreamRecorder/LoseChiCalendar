@@ -6,12 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Pages\CalendarPage.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="License\AGPL.txt" />
+    <EmbeddedResource Include="Pages\CalendarPage.xml" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="DreamRecorder.ToolBox" Version="1.1.4.55" />
-    <PackageReference Include="FoggyConsole" Version="0.1.2.3" />
+    <PackageReference Include="FoggyConsole" Version="0.1.2.6" />
   </ItemGroup>
 
 </Project>
