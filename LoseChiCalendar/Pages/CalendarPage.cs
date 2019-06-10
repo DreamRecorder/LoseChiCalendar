@@ -17,15 +17,15 @@ namespace LoseChiCalendar . Pages
 													typeof(CalendarPage).GetResourceFile(@"CalendarPage.xml")
 													).Root)
 		{
-			
+
 
 		}
 
-		//public Label YearMonthLabel { get ; set ; } = new Label ( ) ;
+		public Label YearMonthLabel { get ; set ; } 
 
-		//      public Canvas MainCanvas { get ; set ; } = new Canvas ( ) ;
+		public Canvas MainCanvas { get ; set ; }
 
-		//public override void OnNavigateTo() => base.OnNavigateTo();
+		public override void OnNavigateTo() => base.OnNavigateTo();
 	}
 
 }
