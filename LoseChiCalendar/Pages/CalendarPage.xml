@@ -8,11 +8,11 @@
     <Label Name="DayNameLabel" Text="Sunday"  HorizontalAlign="Center"/>
     <Button Name="ExitButton" Text="Exit" KeyBind="E"/>
   </StackPanel>
-  <Button Name="PreviousMonthButton" Text="PrevMonth" KeyBind="P" VerticalAlign="Up"/>
+  <Button Name="PreviousMonthButton" Text="PrevMonth" KeyBind="P" VerticalAlign="Top"/>
 
   <Container Name="MonthCalendarContainer">
   </Container>
 
-  <Button Name="NextMonthButton" Text="NextMonth" KeyBind="N" VerticalAlign="Up"/>
+  <Button Name="NextMonthButton" Text="NextMonth" KeyBind="N" VerticalAlign="Top"/>
 
 </HorizontalStackPanel>
