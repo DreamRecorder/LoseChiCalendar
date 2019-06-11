@@ -2,12 +2,12 @@
 <Canvas Name="MainCanvas">
   <HorizontalStackPanel Name="Panel">
     <StackPanel >
-      <Label Name="YearMonthLabel" Text="June 2019" />
-      <FIGletLabel Name="DateLabel" Text="9"/>
-      <Label Name="DayNameLabel" Text="Sunday"/>
+      <Label Name="YearMonthLabel" Text="June 2019" HorizontalAlign="Center"/>
+      <FIGletLabel Name="DateLabel" Text="9"  HorizontalAlign="Center"/>
+      <Label Name="DayNameLabel" Text="Sunday"  HorizontalAlign="Center"/>
       <Button Name="ExitButton" Text="Exit"/>
     </StackPanel>
-    <Container Name="MonthContainer">
+    <Container Name="MonthCalendarContainer">
 
     </Container>
   </HorizontalStackPanel>
