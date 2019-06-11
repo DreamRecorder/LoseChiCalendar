@@ -7,8 +7,12 @@
       <Label Name="DayNameLabel" Text="Sunday"  HorizontalAlign="Center"/>
       <Button Name="ExitButton" Text="Exit" KeyBind="E"/>
     </StackPanel>
+    <Button Name="PreviousMonthButton" Text="PrevMonth" KeyBind="P"/>
+
     <Container Name="MonthCalendarContainer">
 
     </Container>
+    <Button Name="NextMonthButton" Text="NextMonth" KeyBind="N"/>
+
   </HorizontalStackPanel>
 </Canvas>
