@@ -5,7 +5,7 @@
       <Label Name="YearMonthLabel" Text="June 2019" HorizontalAlign="Center"/>
       <FIGletLabel Name="DateLabel" Text="9"  HorizontalAlign="Center"/>
       <Label Name="DayNameLabel" Text="Sunday"  HorizontalAlign="Center"/>
-      <Button Name="ExitButton" Text="Exit"/>
+      <Button Name="ExitButton" Text="Exit" KeyBind="E"/>
     </StackPanel>
     <Container Name="MonthCalendarContainer">
 

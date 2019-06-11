@@ -122,7 +122,10 @@ namespace LoseChiCalendar . Pages
 										Text            = $"{i}",
 										HorizontalAlign = ContentHorizontalAlign.Right,
 										Width           = 5,
+										Tag=new DateTime(CurrentDateTime.Year, CurrentDateTime.Month,i)
 									};
+
+                    button.Pressed += DateButton_Pressed;
 
 					if (i < 11)
 					{
@@ -134,12 +137,12 @@ namespace LoseChiCalendar . Pages
 						button.ForegroundColor = ConsoleColor.Red;
 					}
 
-					if ( i== CurrentDateTime.Day)
+					if ( i == CurrentDateTime.Day)
 					{
 						button.ForegroundColor = ConsoleColor.Green;
                     }
 
-                    if (new DateTime(CurrentDateTime.Year, CurrentDateTime.Month, i) == DateTime.Today.Date)
+                    if ((button.Tag as DateTime?)?.Date == DateTime.Today.Date)
 					{
 						button.ForegroundColor = ConsoleColor.Blue;
 					}
@@ -161,7 +164,12 @@ namespace LoseChiCalendar . Pages
 
         }
 
-        public override void OnNavigateTo()
+		private void DateButton_Pressed ( object sender , EventArgs e )
+		{
+			C
+		}
+
+		public override void OnNavigateTo()
 		{
 			UpdateView ( ) ;
 			base . OnNavigateTo ( ) ;
