@@ -196,7 +196,6 @@ namespace LoseChiCalendar
 			return ViewRoot ;
 		}
 
-		private void ExitButton_Pressed ( object sender , EventArgs e ) { Exit ( ProgramExitCode . Success ) ; }
 
 		public string GetLicense ( ) => typeof ( Program ) . GetResourceFile ( @"License.AGPL.txt" ) ;
 

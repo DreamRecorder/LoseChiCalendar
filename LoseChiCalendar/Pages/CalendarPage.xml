@@ -1,9 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Canvas Name="MainCanvas">
-  <StackPanel Name="Panel">
-    <Label Name="YearMonthLabel" Text="June 2019"/>
-    <FIGletLabel Name="DateLabel" Text="9"/>
-    <Label Name="DayNameLabel" Text="Sunday"/>
-    <Button Name="ExitButton" Text="Exit"/>
-  </StackPanel>
+  <HorizontalStackPanel Name="Panel">
+    <StackPanel >
+      <Label Name="YearMonthLabel" Text="June 2019" />
+      <FIGletLabel Name="DateLabel" Text="9"/>
+      <Label Name="DayNameLabel" Text="Sunday"/>
+      <Button Name="ExitButton" Text="Exit"/>
+    </StackPanel>
+    <Container Name="MonthContainer">
+
+    </Container>
+  </HorizontalStackPanel>
 </Canvas>
