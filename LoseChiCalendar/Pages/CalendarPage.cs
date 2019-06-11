@@ -54,7 +54,7 @@ namespace LoseChiCalendar.Pages
 
         public Label DayNameLabel { get; set; }
 
-        public Canvas MainCanvas { get; set; }
+       // public Canvas MainCanvas { get; set; }
 
         public Button ExitButton { get; set; }
 
@@ -159,6 +159,7 @@ namespace LoseChiCalendar.Pages
                     if (i == CurrentDateTime.Day)
                     {
                         button.ForegroundColor = ConsoleColor.Green;
+						
                     }
 
                     if ((button.Tag as DateTime?)?.Date == DateTime.Today.Date)

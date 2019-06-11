@@ -15,8 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DreamRecorder.ToolBox" Version="1.1.4.56" />
-    <PackageReference Include="FoggyConsole" Version="0.1.2.12" />
+    <PackageReference Include="FoggyConsole" Version="0.1.2.14" />
   </ItemGroup>
 
 </Project>
