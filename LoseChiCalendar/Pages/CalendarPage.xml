@@ -2,17 +2,27 @@
 
 <HorizontalStackPanel Name="Panel">
 
-  <StackPanel >
+  <StackPanel Width="12" AutoWidth="false">
     <Label Name="YearMonthLabel" Text="June 2019" HorizontalAlign="Center"/>
     <FIGletLabel Name="DateLabel" Text="9"  HorizontalAlign="Center"/>
     <Label Name="DayNameLabel" Text="Sunday"  HorizontalAlign="Center"/>
     <Button Name="ExitButton" Text="Exit" KeyBind="E"/>
+    <Button Name="TodayButton" Text="Today" KeyBind="T"/>
   </StackPanel>
-  <Button Name="PreviousMonthButton" Text="PrevMonth" KeyBind="P" VerticalAlign="Top"/>
+  <Label Text="    "/>
+  <StackPanel >
 
-  <Container Name="MonthCalendarContainer">
-  </Container>
+    <HorizontalStackPanel>
+      <Button Name="PreviousMonthButton" Text="PrevMonth" KeyBind="P" VerticalAlign="Top"/>
+      <Label Name="YearMonthLabel2" Text="June 2019" HorizontalAlign="Center"/>
 
-  <Button Name="NextMonthButton" Text="NextMonth" KeyBind="N" VerticalAlign="Top"/>
+      <Button Name="NextMonthButton" Text="NextMonth" KeyBind="N" VerticalAlign="Top"/>
+
+    </HorizontalStackPanel>
+
+    <Container Name="MonthCalendarContainer">
+    </Container>
+
+  </StackPanel>
 
 </HorizontalStackPanel>

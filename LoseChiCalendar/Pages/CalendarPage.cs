@@ -20,26 +20,34 @@ namespace LoseChiCalendar.Pages
         public CalendarPage() : base(XDocument.Parse(
                                                     typeof(CalendarPage).GetResourceFile(@"CalendarPage.xml")
                                                     ).Root)
-        {
+        {	
 
             YearMonthLabel = Find<Label>(nameof(YearMonthLabel));
+            YearMonthLabel2 = Find<Label>(nameof(YearMonthLabel2));
             DateLabel = Find<FIGletLabel>(nameof(DateLabel));
             DayNameLabel = Find<Label>(nameof(DayNameLabel));
             ExitButton = Find<Button>(nameof(ExitButton));
             MonthCalendarContainer = Find<Container>(nameof(MonthCalendarContainer));
             PreviousMonthButton = Find<Button>(nameof(PreviousMonthButton));
             NextMonthButton = Find<Button>(nameof(NextMonthButton));
+            TodayButton = Find<Button>(nameof(TodayButton));
 
             ExitButton.Pressed += ExitButton_Pressed;
             PreviousMonthButton.Pressed += PreviousMonthButton_Pressed;
             NextMonthButton.Pressed += NextMonthButton_Pressed;
+            TodayButton.Pressed += TodayButton_Pressed;
+        }
+
+        private void TodayButton_Pressed(object sender, EventArgs e)
+        {
+            CurrentDateTime = DateTime.Now.Date;
         }
 
         private void NextMonthButton_Pressed(object sender, EventArgs e)
-		{
-			DateTime currentDateTime = CurrentDateTime;
-			CurrentDateTime = currentDateTime.AddMonths(1);
-		}
+        {
+            DateTime currentDateTime = CurrentDateTime;
+            CurrentDateTime = currentDateTime.AddMonths(1);
+        }
         private void PreviousMonthButton_Pressed(object sender, EventArgs e)
         {
             DateTime currentDateTime = CurrentDateTime;
@@ -50,11 +58,16 @@ namespace LoseChiCalendar.Pages
 
         public Label YearMonthLabel { get; set; }
 
+        public Label YearMonthLabel2 { get; set; }
+
+
         public FIGletLabel DateLabel { get; set; }
 
         public Label DayNameLabel { get; set; }
 
-       // public Canvas MainCanvas { get; set; }
+        // public Canvas MainCanvas { get; set; }
+
+        public Button TodayButton { get; set; }
 
         public Button ExitButton { get; set; }
 
@@ -87,11 +100,14 @@ namespace LoseChiCalendar.Pages
         public void UpdateView()
         {
             YearMonthLabel.Text = CurrentDateTime.ToString("MMMM yyyy");
+            YearMonthLabel2.Text = CurrentDateTime.ToString("MMMM yyyy");
             DateLabel.Text = CurrentDateTime.Day.ToString();
             DayNameLabel.Text = CurrentDateTime.ToString("dddd");
 
             if (MonthCalendarDate?.Date != CurrentDateTime.Date)
             {
+                bool changeFocus = FocusManager.Current?.FocusedControl?.Container?.Container == MonthCalendarContainer;
+
                 CultureInfo cultureInfo = new CultureInfo("en-US");
 
                 DateTimeFormatInfo dateTimeFormat = cultureInfo.DateTimeFormat;
@@ -159,7 +175,13 @@ namespace LoseChiCalendar.Pages
                     if (i == CurrentDateTime.Day)
                     {
                         button.ForegroundColor = ConsoleColor.Green;
-						
+                        if (changeFocus)
+                        {
+                            if (FocusManager.Current != null)
+                            {
+                                FocusManager.Current.FocusedControl = button;
+                            }
+                        }
                     }
 
                     if ((button.Tag as DateTime?)?.Date == DateTime.Today.Date)
@@ -181,7 +203,7 @@ namespace LoseChiCalendar.Pages
                 }
             }
 
-		}
+        }
 
         private void DateButton_Pressed(object sender, EventArgs e)
         {
