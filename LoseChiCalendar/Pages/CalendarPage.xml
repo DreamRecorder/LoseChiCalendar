@@ -1,28 +1,50 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StackPanel>
 
-<HorizontalStackPanel Name="Panel">
+  <HorizontalStackPanel Name="Panel" >
 
-  <StackPanel Width="12" AutoWidth="false">
-    <Label Name="YearMonthLabel" Text="June 2019" HorizontalAlign="Center"/>
-    <FIGletLabel Name="DateLabel" Text="9"  HorizontalAlign="Center"/>
-    <Label Name="DayNameLabel" Text="Sunday"  HorizontalAlign="Center"/>
-    <Button Name="ExitButton" Text="Exit" KeyBind="E"/>
-    <Button Name="TodayButton" Text="Today" KeyBind="T"/>
-  </StackPanel>
-  <Label Text="    "/>
-  <StackPanel >
+    <StackPanel Width="20" AutoWidth="false" >
+      <Label Name="YearMonthLabel" Text="June 2019" HorizontalAlign="Center" />
+      <FIGletLabel Name="DateLabel" Text="9" HorizontalAlign="Center" />
+      <Label Name="DayNameLabel" Text="Sunday" HorizontalAlign="Center" />
+      <Button Name="ExitButton" Text="Exit" KeyBind="E" />
+      <Button Name="TodayButton" Text="Today" KeyBind="T" />
+    </StackPanel>
+    <Label Text="    " />
+    <StackPanel>
+      <HorizontalStackPanel>
+        <Button Name="PreviousMonthButton" Text="PrevMonth" KeyBind="P" VerticalAlign="Top" />
+        <Label Name="YearMonthLabel2" Text="June 2019" HorizontalAlign="Center" />
 
+        <Button Name="NextMonthButton" Text="NextMonth" KeyBind="N" VerticalAlign="Top" />
+
+      </HorizontalStackPanel>
+
+      <Container Name="MonthCalendarContainer" >
+      </Container>
+
+    </StackPanel>
+    <Label Text="    " />
+
+  </HorizontalStackPanel>
+  <StackPanel>
     <HorizontalStackPanel>
-      <Button Name="PreviousMonthButton" Text="PrevMonth" KeyBind="P" VerticalAlign="Top"/>
-      <Label Name="YearMonthLabel2" Text="June 2019" HorizontalAlign="Center"/>
-
-      <Button Name="NextMonthButton" Text="NextMonth" KeyBind="N" VerticalAlign="Top"/>
-
+      <Label Text="It is " />
+      <Label Text="proper" ForegroundColor="Green"/>
+      <Label Text=" to " />
+      <Label Text="study in the Library" ForegroundColor="Blue"/>
+      <Label Text=" or " />
+      <Label Text="study in the Library" ForegroundColor="Blue"/>
+      <Label Text="." />
     </HorizontalStackPanel>
+    <HorizontalStackPanel>
+      <Label Text="It is " />
+      <Label Text="improper" ForegroundColor="Red"/>
+      <Label Text=" to " />
+      <Label Text="study in the Library" ForegroundColor="Blue"/>
+      <Label Text=" or  " />
 
-    <Container Name="MonthCalendarContainer">
-    </Container>
-
+      <Label Text="." />
+    </HorizontalStackPanel>
   </StackPanel>
-
-</HorizontalStackPanel>
+</StackPanel>

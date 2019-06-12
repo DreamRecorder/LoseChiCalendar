@@ -78,13 +78,19 @@ namespace LoseChiCalendar.Pages
         public Container MonthCalendarContainer { get; set; }
 
         public DateTime? MonthCalendarDate
-        {
-            get => MonthCalendarContainer?.Tag as DateTime?;
-            set => MonthCalendarContainer.Tag = value;
-        }
+		{
+			get => MonthCalendarContainer?.Tag as DateTime?;
+			set
+			{
+				if ( MonthCalendarContainer != null )
+				{
+					MonthCalendarContainer . Tag = value ;
+				}
+			}
+		}
 
 
-        public DateTime CurrentDateTime
+		public DateTime CurrentDateTime
         {
             get => _currentDateTime;
             set
@@ -114,9 +120,12 @@ namespace LoseChiCalendar.Pages
 
                 Canvas canvas = new Canvas();
 
-                MonthCalendarContainer.Content = (canvas);
+				if ( MonthCalendarContainer != null )
+				{
+					MonthCalendarContainer . Content = ( canvas ) ;
+				}
 
-                MonthCalendarDate = CurrentDateTime.Date;
+				MonthCalendarDate = CurrentDateTime.Date;
 
                 int y = 0;
 
@@ -133,7 +142,7 @@ namespace LoseChiCalendar.Pages
 
                     if (i == 0 || i == 6)
                     {
-                        label.ForegroundColor = ConsoleColor.DarkRed;
+                        label.ForegroundColor = ConsoleColor.Red;
                     }
 
                     canvas.Items.Add(label);
@@ -169,7 +178,7 @@ namespace LoseChiCalendar.Pages
 
                     if (weekday == 0 || weekday == 6)
                     {
-                        button.ForegroundColor = ConsoleColor.Red;
+                        button.ForegroundColor = ConsoleColor.Cyan;
                     }
 
                     if (i == CurrentDateTime.Day)
