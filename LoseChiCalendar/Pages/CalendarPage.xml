@@ -12,13 +12,11 @@
     </StackPanel>
     <Label Text="    " />
     <StackPanel>
-      <HorizontalStackPanel>
-        <Button Name="PreviousMonthButton" Text="PrevMonth" KeyBind="P" VerticalAlign="Top" />
+      <Grid>
+        <Button Name="PreviousMonthButton" Text="PrevMonth" KeyBind="P" HorizontalAlign="Left" />
         <Label Name="YearMonthLabel2" Text="June 2019" HorizontalAlign="Center" />
-
-        <Button Name="NextMonthButton" Text="NextMonth" KeyBind="N" VerticalAlign="Top" />
-
-      </HorizontalStackPanel>
+        <Button Name="NextMonthButton" Text="NextMonth" KeyBind="N" HorizontalAlign="Right"/>
+      </Grid>
 
       <Container Name="MonthCalendarContainer" >
       </Container>
