@@ -1,85 +1,63 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Xml.Linq;
+﻿using System ;
+using System . Collections ;
+using System . Collections . Generic ;
+using System . Globalization ;
+using System . Linq ;
+using System . Xml . Linq ;
 
-using DreamRecorder.FoggyConsole;
-using DreamRecorder.FoggyConsole.Controls;
-using DreamRecorder.ToolBox.General;
+using DreamRecorder . FoggyConsole ;
+using DreamRecorder . FoggyConsole . Controls ;
+using DreamRecorder . ToolBox . General ;
 
-namespace LoseChiCalendar.Pages
+namespace LoseChiCalendar . Pages
 {
 
-    public sealed class CalendarPage : Page
-    {
+	public sealed class CalendarPage : Page
+	{
 
-        private DateTime _currentDateTime = DateTime.Now;
+		private DateTime _currentDateTime = DateTime . Now . Date ;
 
-        public CalendarPage() : base(XDocument.Parse(
-                                                    typeof(CalendarPage).GetResourceFile(@"CalendarPage.xml")
-                                                    ).Root)
-        {	
+		private List <string> ThingsTodo { get ; set ; } = new List <string>
+															{
+																"study in the Library" ,
+																"study in dormitory" ,
+																"study in the Pinxue Building" ,
+																"study in the Liren Building" ,
+																"swim" ,
+																"practice playing piano" ,
+																"practice playing viola" ,
+																"practice playing violin" ,
+																"do homework" ,
+																"watch ducks" ,
+																"watch PornHub" ,
+																"watch Youtube"
+															} ;
 
-            YearMonthLabel = Find<Label>(nameof(YearMonthLabel));
-            YearMonthLabel2 = Find<Label>(nameof(YearMonthLabel2));
-            DateLabel = Find<FIGletLabel>(nameof(DateLabel));
-            DayNameLabel = Find<Label>(nameof(DayNameLabel));
-            ExitButton = Find<Button>(nameof(ExitButton));
-            MonthCalendarContainer = Find<Container>(nameof(MonthCalendarContainer));
-            PreviousMonthButton = Find<Button>(nameof(PreviousMonthButton));
-            NextMonthButton = Find<Button>(nameof(NextMonthButton));
-            TodayButton = Find<Button>(nameof(TodayButton));
+		public Label YearMonthLabel { get ; set ; }
 
-            ExitButton.Pressed += ExitButton_Pressed;
-            PreviousMonthButton.Pressed += PreviousMonthButton_Pressed;
-            NextMonthButton.Pressed += NextMonthButton_Pressed;
-            TodayButton.Pressed += TodayButton_Pressed;
-        }
+		public Label YearMonthLabel2 { get ; set ; }
 
-        private void TodayButton_Pressed(object sender, EventArgs e)
-        {
-            CurrentDateTime = DateTime.Now.Date;
-        }
+		public FIGletLabel DateLabel { get ; set ; }
 
-        private void NextMonthButton_Pressed(object sender, EventArgs e)
-        {
-            DateTime currentDateTime = CurrentDateTime;
-            CurrentDateTime = currentDateTime.AddMonths(1);
-        }
-        private void PreviousMonthButton_Pressed(object sender, EventArgs e)
-        {
-            DateTime currentDateTime = CurrentDateTime;
-            CurrentDateTime = currentDateTime.AddMonths(-1);
-        }
+		public Label DayNameLabel { get ; set ; }
 
-        private void ExitButton_Pressed(object sender, EventArgs e) { Program.Current.Exit(ProgramExitCode.Success); }
+		public Button TodayButton { get ; set ; }
 
-        public Label YearMonthLabel { get; set; }
+		public Button ExitButton { get ; set ; }
 
-        public Label YearMonthLabel2 { get; set; }
+		public Button PreviousMonthButton { get ; set ; }
 
+		public Button NextMonthButton { get ; set ; }
 
-        public FIGletLabel DateLabel { get; set; }
+		public Container MonthCalendarContainer { get ; set ; }
 
-        public Label DayNameLabel { get; set; }
+		public HorizontalStackPanel ProperThingsTodoContainer { get ; set ; }
 
-        // public Canvas MainCanvas { get; set; }
+		public HorizontalStackPanel ImproperThingsTodoContainer { get ; set ; }
 
-        public Button TodayButton { get; set; }
-
-        public Button ExitButton { get; set; }
-
-        public Button PreviousMonthButton { get; set; }
-
-        public Button NextMonthButton { get; set; }
-
-        public Container MonthCalendarContainer { get; set; }
-
-        public DateTime? MonthCalendarDate
+		public DateTime ? MonthCalendarDate
 		{
-			get => MonthCalendarContainer?.Tag as DateTime?;
+			get => MonthCalendarContainer ? . Tag as DateTime ? ;
 			set
 			{
 				if ( MonthCalendarContainer != null )
@@ -89,142 +67,288 @@ namespace LoseChiCalendar.Pages
 			}
 		}
 
-
 		public DateTime CurrentDateTime
-        {
-            get => _currentDateTime;
-            set
-            {
-                if (_currentDateTime != value)
-                {
-                    _currentDateTime = value;
-                    UpdateView();
-                }
-            }
-        }
+		{
+			get => _currentDateTime ;
+			set
+			{
+				if ( _currentDateTime != value )
+				{
+					_currentDateTime = value . Date ;
+					UpdateView ( ) ;
+				}
+			}
+		}
 
-        public void UpdateView()
-        {
-            YearMonthLabel.Text = CurrentDateTime.ToString("MMMM yyyy");
-            YearMonthLabel2.Text = CurrentDateTime.ToString("MMMM yyyy");
-            DateLabel.Text = CurrentDateTime.Day.ToString();
-            DayNameLabel.Text = CurrentDateTime.ToString("dddd");
+		public CalendarPage ( ) : base (
+										XDocument . Parse (
+															typeof ( CalendarPage ) . GetResourceFile (
+																										@"CalendarPage.xml" ) ) .
+													Root )
+		{
+			YearMonthLabel              = Find <Label> ( nameof ( YearMonthLabel ) ) ;
+			YearMonthLabel2             = Find <Label> ( nameof ( YearMonthLabel2 ) ) ;
+			DateLabel                   = Find <FIGletLabel> ( nameof ( DateLabel ) ) ;
+			DayNameLabel                = Find <Label> ( nameof ( DayNameLabel ) ) ;
+			ExitButton                  = Find <Button> ( nameof ( ExitButton ) ) ;
+			MonthCalendarContainer      = Find <Container> ( nameof ( MonthCalendarContainer ) ) ;
+			PreviousMonthButton         = Find <Button> ( nameof ( PreviousMonthButton ) ) ;
+			NextMonthButton             = Find <Button> ( nameof ( NextMonthButton ) ) ;
+			TodayButton                 = Find <Button> ( nameof ( TodayButton ) ) ;
+			ProperThingsTodoContainer   = Find <HorizontalStackPanel> ( nameof ( ProperThingsTodoContainer ) ) ;
+			ImproperThingsTodoContainer = Find <HorizontalStackPanel> ( nameof ( ImproperThingsTodoContainer ) ) ;
 
-            if (MonthCalendarDate?.Date != CurrentDateTime.Date)
-            {
-                bool changeFocus = FocusManager.Current?.FocusedControl?.Container?.Container == MonthCalendarContainer;
+			ExitButton . Pressed          += ExitButton_Pressed ;
+			PreviousMonthButton . Pressed += PreviousMonthButton_Pressed ;
+			NextMonthButton . Pressed     += NextMonthButton_Pressed ;
+			TodayButton . Pressed         += TodayButton_Pressed ;
+		}
 
-                CultureInfo cultureInfo = new CultureInfo("en-US");
+		private void TodayButton_Pressed ( object sender , EventArgs e ) { CurrentDateTime = DateTime . Now . Date ; }
 
-                DateTimeFormatInfo dateTimeFormat = cultureInfo.DateTimeFormat;
+		private void NextMonthButton_Pressed ( object sender , EventArgs e )
+		{
+			DateTime currentDateTime = CurrentDateTime ;
+			CurrentDateTime = currentDateTime . AddMonths ( 1 ) ;
+		}
 
-                Canvas canvas = new Canvas();
+		private void PreviousMonthButton_Pressed ( object sender , EventArgs e )
+		{
+			DateTime currentDateTime = CurrentDateTime ;
+			CurrentDateTime = currentDateTime . AddMonths ( - 1 ) ;
+		}
+
+		private void ExitButton_Pressed ( object sender , EventArgs e )
+		{
+			Program . Current . Exit ( ProgramExitCode . Success ) ;
+		}
+
+		public void UpdateView ( )
+		{
+			YearMonthLabel . Text  = CurrentDateTime . ToString ( "MMMM yyyy" ) ;
+			YearMonthLabel2 . Text = CurrentDateTime . ToString ( "MMMM yyyy" ) ;
+			DateLabel . Text       = CurrentDateTime . Day . ToString ( ) ;
+			DayNameLabel . Text    = CurrentDateTime . ToString ( "dddd" ) ;
+
+			if ( MonthCalendarDate ? . Date != CurrentDateTime . Date )
+			{
+				#region Update Month Calendar
+
+				bool changeFocus = FocusManager . Current ? . FocusedControl ? . Container ? . Container
+									== MonthCalendarContainer ;
+
+				CultureInfo cultureInfo = new CultureInfo ( "en-US" ) ;
+
+				DateTimeFormatInfo dateTimeFormat = cultureInfo . DateTimeFormat ;
+
+				Canvas canvas = new Canvas ( ) ;
 
 				if ( MonthCalendarContainer != null )
 				{
 					MonthCalendarContainer . Content = ( canvas ) ;
 				}
 
-				MonthCalendarDate = CurrentDateTime.Date;
+				MonthCalendarDate = CurrentDateTime . Date ;
 
-                int y = 0;
+				int y = 0 ;
 
-                string[] dayNames = dateTimeFormat.AbbreviatedDayNames;
+				string [ ] dayNames = dateTimeFormat . AbbreviatedDayNames ;
 
-                for (int i = 0; i < 7; i++)
-                {
-                    Label label = new Label()
-                    {
-                        Text = (dayNames[i]),
-                        HorizontalAlign = ContentHorizontalAlign.Left,
-                        Width = 3,
-                    };
+				for ( int i = 0 ; i < 7 ; i++ )
+				{
+					Label label = new Label
+								{
+									Text            = ( dayNames [ i ] ) ,
+									HorizontalAlign = ContentHorizontalAlign . Left ,
+									Width           = 3
+								} ;
 
-                    if (i == 0 || i == 6)
-                    {
-                        label.ForegroundColor = ConsoleColor.Red;
-                    }
+					if ( i   == 0
+						|| i == 6 )
+					{
+						label . ForegroundColor = ConsoleColor . Red ;
+					}
 
-                    canvas.Items.Add(label);
+					canvas . Items . Add ( label ) ;
 
-                    canvas[label] = new Point((6 * i) + 1, y);
-                }
+					canvas [ label ] = new Point ( ( 6 * i ) + 1 , y ) ;
+				}
 
-                y++;
+				y++ ;
 
-                DateTime firstMonthDay = new DateTime(CurrentDateTime.Year, CurrentDateTime.Month, 1);
+				DateTime firstMonthDay = new DateTime ( CurrentDateTime . Year , CurrentDateTime . Month , 1 ) ;
 
-                int daysInMonth = DateTime.DaysInMonth(CurrentDateTime.Year, CurrentDateTime.Month);
+				int daysInMonth = DateTime . DaysInMonth ( CurrentDateTime . Year , CurrentDateTime . Month ) ;
 
-                int weekday = (int)firstMonthDay.DayOfWeek;
+				int weekday = ( int ) firstMonthDay . DayOfWeek ;
 
-                for (int i = 1; i <= daysInMonth; i++)
-                {
-                    Button button = new Button
-                    {
-                        Name = $"button{i}",
-                        Text = $"{i}",
-                        HorizontalAlign = ContentHorizontalAlign.Right,
-                        Width = 5,
-                        Tag = new DateTime(CurrentDateTime.Year, CurrentDateTime.Month, i)
-                    };
+				DateTime prevMonth = CurrentDateTime . AddMonths ( - 1 ) ;
 
-                    button.Pressed += DateButton_Pressed;
+				int daysInPrevMonth = DateTime . DaysInMonth ( prevMonth . Year , prevMonth . Month ) ;
 
-                    if (i < 11)
-                    {
-                        button.KeyBind = i.ToString().Last();
-                    }
+				for ( int i = 0 ; i < weekday ; i++ )
+				{
+					int day = daysInPrevMonth - ( weekday - i ) + 1 ;
 
-                    if (weekday == 0 || weekday == 6)
-                    {
-                        button.ForegroundColor = ConsoleColor.Cyan;
-                    }
+					Button button = new Button
+									{
+										Name            = $"buttonPrev{day}" ,
+										Text            = $"{day}" ,
+										HorizontalAlign = ContentHorizontalAlign . Right ,
+										Width           = 5 ,
+										Tag             = new DateTime ( prevMonth . Year , prevMonth . Month , day ) ,
+										ForegroundColor = ConsoleColor . DarkGray
+									} ;
 
-                    if (i == CurrentDateTime.Day)
-                    {
-                        button.ForegroundColor = ConsoleColor.Green;
-                        if (changeFocus)
-                        {
-                            if (FocusManager.Current != null)
-                            {
-                                FocusManager.Current.FocusedControl = button;
-                            }
-                        }
-                    }
+					button . Pressed += DateButton_Pressed ;
 
-                    if ((button.Tag as DateTime?)?.Date == DateTime.Today.Date)
-                    {
-                        button.ForegroundColor = ConsoleColor.Blue;
-                    }
+					canvas . Items . Add ( button ) ;
 
-                    canvas.Items.Add(button);
+					canvas [ button ] = new Point ( 6 * i , y ) ;
+				}
 
-                    canvas[button] = new Point(6 * weekday, y);
+				for ( int i = 1 ; i <= daysInMonth ; i++ )
+				{
+					Button button = new Button
+									{
+										Name            = $"button{i}" ,
+										Text            = $"{i}" ,
+										HorizontalAlign = ContentHorizontalAlign . Right ,
+										Width           = 5 ,
+										Tag = new DateTime (
+																		CurrentDateTime . Year ,
+																		CurrentDateTime . Month ,
+																		i )
+									} ;
 
-                    weekday++;
+					button . Pressed += DateButton_Pressed ;
 
-                    while (weekday >= 7)
-                    {
-                        weekday -= 7;
-                        y++;
-                    }
-                }
-            }
+					if ( i < 11 )
+					{
+						button . KeyBind = i . ToString ( ) . Last ( ) ;
+					}
 
-        }
+					if ( weekday   == 0
+						|| weekday == 6 )
+					{
+						button . ForegroundColor = ConsoleColor . Cyan ;
+					}
 
-        private void DateButton_Pressed(object sender, EventArgs e)
-        {
-            CurrentDateTime = ((sender as Button)?.Tag as DateTime?)?.Date ?? CurrentDateTime;
-        }
+					if ( i == CurrentDateTime . Day )
+					{
+						button . ForegroundColor = ConsoleColor . Green ;
+						if ( changeFocus )
+						{
+							if ( FocusManager . Current != null )
+							{
+								FocusManager . Current . FocusedControl = button ;
+							}
+						}
+					}
 
-        public override void OnNavigateTo()
-        {
-            UpdateView();
-            base.OnNavigateTo();
-        }
+					if ( ( button . Tag as DateTime ? ) ? . Date == DateTime . Today . Date )
+					{
+						button . ForegroundColor = ConsoleColor . Blue ;
+					}
 
-    }
+					canvas . Items . Add ( button ) ;
+
+					canvas [ button ] = new Point ( 6 * weekday , y ) ;
+
+					weekday++ ;
+
+					while ( weekday >= 7 )
+					{
+						weekday -= 7 ;
+						y++ ;
+					}
+				}
+
+				DateTime nextMonth = CurrentDateTime . AddMonths ( 1 ) ;
+
+				for ( int i = weekday ; i < 7 ; i++ )
+				{
+					int day = ( i - weekday ) + 1 ;
+
+					Button button = new Button
+									{
+										Name            = $"buttonPrev{day}" ,
+										Text            = $"{day}" ,
+										HorizontalAlign = ContentHorizontalAlign . Right ,
+										Width           = 5 ,
+										Tag             = new DateTime ( nextMonth . Year , nextMonth . Month , day ) ,
+										ForegroundColor = ConsoleColor . DarkGray
+									} ;
+
+					button . Pressed += DateButton_Pressed ;
+
+					canvas . Items . Add ( button ) ;
+
+					canvas [ button ] = new Point ( 6 * i , y ) ;
+				}
+
+				#endregion
+
+				Random random = new Random ( CurrentDateTime . Date . Ticks . GetHashCode ( ) ) ;
+
+				int properThingsCount = random . Next ( 1 , 3 ) ;
+
+				int improperThingsCount = random . Next ( 1 , 3 ) ;
+
+				int thingsTodoCount = properThingsCount + improperThingsCount ;
+
+				List <string> thingsTodo =
+					ThingsTodo . RandomUniqueChoose ( thingsTodoCount , ( SystemRandomWrapper ) random ) ;
+
+				ProperThingsTodoContainer . Items . Clear ( ) ;
+
+				for ( int i = 0 ; i < properThingsCount ; i++ )
+				{
+					if ( i > 0 )
+					{
+						Label orLabel = new Label { Text = " or " } ;
+
+						ProperThingsTodoContainer . Items . Add ( orLabel ) ;
+					}
+
+					Label thingLabel = new Label { Text = thingsTodo [ i ] , ForegroundColor = ConsoleColor . Blue } ;
+
+					ProperThingsTodoContainer . Items . Add ( thingLabel ) ;
+				}
+
+				ImproperThingsTodoContainer . Items . Clear ( ) ;
+
+				for ( int i = 0 ; i < improperThingsCount ; i++ )
+				{
+					if ( i > 0 )
+					{
+						Label orLabel = new Label { Text = " or " } ;
+
+						ImproperThingsTodoContainer . Items . Add ( orLabel ) ;
+					}
+
+					Label thingLabel = new Label
+										{
+											Text            = thingsTodo [ i + properThingsCount ] ,
+											ForegroundColor = ConsoleColor . Blue
+										} ;
+
+					ImproperThingsTodoContainer . Items . Add ( thingLabel ) ;
+				}
+			}
+		}
+
+		private void DateButton_Pressed ( object sender , EventArgs e )
+		{
+			CurrentDateTime = ( ( sender as Button ) ? . Tag as DateTime ? ) ? . Date ?? CurrentDateTime ;
+		}
+
+		public override void OnNavigateTo ( )
+		{
+			UpdateView ( ) ;
+			base . OnNavigateTo ( ) ;
+		}
+
+	}
 
 }

@@ -1,47 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <StackPanel>
-
   <HorizontalStackPanel Name="Panel" >
-
     <StackPanel Width="20" AutoWidth="false" >
       <Label Name="YearMonthLabel" Text="June 2019" HorizontalAlign="Center" />
       <FIGletLabel Name="DateLabel" Text="9" HorizontalAlign="Center" />
       <Label Name="DayNameLabel" Text="Sunday" HorizontalAlign="Center" />
       <Button Name="ExitButton" Text="Exit" KeyBind="E" />
-      <Button Name="TodayButton" Text="Today" KeyBind="T" />
     </StackPanel>
     <Label Text="    " />
     <StackPanel>
       <Grid>
         <Button Name="PreviousMonthButton" Text="PrevMonth" KeyBind="P" HorizontalAlign="Left" />
         <Label Name="YearMonthLabel2" Text="June 2019" HorizontalAlign="Center" />
-        <Button Name="NextMonthButton" Text="NextMonth" KeyBind="N" HorizontalAlign="Right"/>
+        <Button Name="NextMonthButton" Text="NextMonth" KeyBind="N" HorizontalAlign="Right" />
       </Grid>
-
       <Container Name="MonthCalendarContainer" >
       </Container>
+      <Button Name="TodayButton" Text="Today" KeyBind="T" />
 
     </StackPanel>
-    <Label Text="    " />
-
   </HorizontalStackPanel>
   <StackPanel>
     <HorizontalStackPanel>
       <Label Text="It is " />
-      <Label Text="proper" ForegroundColor="Green"/>
+      <Label Text="proper" ForegroundColor="Green" />
       <Label Text=" to " />
-      <Label Text="study in the Library" ForegroundColor="Blue"/>
-      <Label Text=" or " />
-      <Label Text="study in the Library" ForegroundColor="Blue"/>
+      <HorizontalStackPanel Name="ProperThingsTodoContainer" >
+
+      </HorizontalStackPanel>
       <Label Text="." />
     </HorizontalStackPanel>
     <HorizontalStackPanel>
       <Label Text="It is " />
-      <Label Text="improper" ForegroundColor="Red"/>
+      <Label Text="improper" ForegroundColor="Red" />
       <Label Text=" to " />
-      <Label Text="study in the Library" ForegroundColor="Blue"/>
-      <Label Text=" or  " />
+      <HorizontalStackPanel Name="ImproperThingsTodoContainer" >
 
+      </HorizontalStackPanel>
       <Label Text="." />
     </HorizontalStackPanel>
   </StackPanel>
