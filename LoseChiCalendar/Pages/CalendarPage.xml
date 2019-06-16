@@ -1,33 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <StackPanel>
-  <HorizontalStackPanel Name="Panel" >
-    <StackPanel Width="20" AutoWidth="false" >
+  <Grid Name="Panel" ColumnsData="-1+,4,-1" >
+    <StackPanel Width="20" AutoWidth="false" Container.Item="0,0,1,1" HorizontalAlign="Center" >
       <Label Name="YearMonthLabel" Text="June 2019" HorizontalAlign="Center" />
       <FIGletLabel Name="DateLabel" Text="9" HorizontalAlign="Center" />
       <Label Name="DayNameLabel" Text="Sunday" HorizontalAlign="Center" />
       <Button Name="ExitButton" Text="Exit" KeyBind="E" />
     </StackPanel>
-    <Label Text="    " />
-    <StackPanel>
+    <StackPanel Container.Item="2,0,1,1" HorizontalAlign="Left" >
       <Grid>
         <Button Name="PreviousMonthButton" Text="PrevMonth" KeyBind="P" HorizontalAlign="Left" />
         <Label Name="YearMonthLabel2" Text="June 2019" HorizontalAlign="Center" />
         <Button Name="NextMonthButton" Text="NextMonth" KeyBind="N" HorizontalAlign="Right" />
       </Grid>
-      <Container Name="MonthCalendarContainer" >
+      <Container Name="MonthCalendarContainer" Height="7" AutoHeoght="false" >
       </Container>
       <Button Name="TodayButton" Text="Today" KeyBind="T" />
-
     </StackPanel>
-  </HorizontalStackPanel>
+  </Grid>
   <StackPanel>
     <HorizontalStackPanel>
       <Label Text="It is " />
       <Label Text="proper" ForegroundColor="Green" />
       <Label Text=" to " />
       <HorizontalStackPanel Name="ProperThingsTodoContainer" >
-
       </HorizontalStackPanel>
       <Label Text="." />
     </HorizontalStackPanel>
@@ -36,7 +33,6 @@
       <Label Text="improper" ForegroundColor="Red" />
       <Label Text=" to " />
       <HorizontalStackPanel Name="ImproperThingsTodoContainer" >
-
       </HorizontalStackPanel>
       <Label Text="." />
     </HorizontalStackPanel>

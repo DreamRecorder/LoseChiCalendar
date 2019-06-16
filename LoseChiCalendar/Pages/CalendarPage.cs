@@ -125,10 +125,14 @@ namespace LoseChiCalendar . Pages
 
 		public void UpdateView ( )
 		{
-			YearMonthLabel . Text  = CurrentDateTime . ToString ( "MMMM yyyy" ) ;
-			YearMonthLabel2 . Text = CurrentDateTime . ToString ( "MMMM yyyy" ) ;
+			CultureInfo cultureInfo = new CultureInfo ( "en-US" ) ;
+
+			DateTimeFormatInfo dateTimeFormat = cultureInfo . DateTimeFormat ;
+
+			YearMonthLabel . Text  = CurrentDateTime . ToString ( "MMMM yyyy" , cultureInfo ) ;
+			YearMonthLabel2 . Text = CurrentDateTime . ToString ( "MMMM yyyy" , cultureInfo ) ;
 			DateLabel . Text       = CurrentDateTime . Day . ToString ( ) ;
-			DayNameLabel . Text    = CurrentDateTime . ToString ( "dddd" ) ;
+			DayNameLabel . Text    = CurrentDateTime . ToString ( "dddd" , cultureInfo ) ;
 
 			if ( MonthCalendarDate ? . Date != CurrentDateTime . Date )
 			{
@@ -137,9 +141,6 @@ namespace LoseChiCalendar . Pages
 				bool changeFocus = FocusManager . Current ? . FocusedControl ? . Container ? . Container
 									== MonthCalendarContainer ;
 
-				CultureInfo cultureInfo = new CultureInfo ( "en-US" ) ;
-
-				DateTimeFormatInfo dateTimeFormat = cultureInfo . DateTimeFormat ;
 
 				Canvas canvas = new Canvas ( ) ;
 

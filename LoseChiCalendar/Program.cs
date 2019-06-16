@@ -69,6 +69,8 @@ namespace LoseChiCalendar
 
 		public string GetLicense ( ) => typeof ( Program ) . GetResourceFile ( @"License.AGPL.txt" ) ;
 
+		public override void OnExit ( ProgramExitCode code ) => base . OnExit ( code ) ;
+
 	}
 
 	public class ProgramSetting : SettingBase <ProgramSetting , ProgramSettingCatalog>
