@@ -32,7 +32,7 @@ namespace LoseChiCalendar
 
 		public override bool AutoSaveSetting => true ;
 
-		public Program ( ) => Name = "LoseChiCalendar" ;
+		public Program ( ) { Name = "LoseChiCalendar" ; }
 
 		public static void Main ( string [ ] args ) { new Program ( ) . RunMain ( args ) ; }
 
@@ -67,9 +67,9 @@ namespace LoseChiCalendar
 		}
 
 
-		public string GetLicense ( ) => typeof ( Program ) . GetResourceFile ( @"License.AGPL.txt" ) ;
+		public string GetLicense ( ) { return typeof ( Program ) . GetResourceFile ( @"License.AGPL.txt" ) ; }
 
-		public override void OnExit ( ProgramExitCode code ) => base . OnExit ( code ) ;
+		public override void OnExit ( ProgramExitCode code ) { base . OnExit ( code ) ; }
 
 	}
 

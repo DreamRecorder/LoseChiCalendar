@@ -17,21 +17,21 @@ namespace LoseChiCalendar . Pages
 
 		private DateTime _currentDateTime = DateTime . Now . Date ;
 
-		private List <string> ThingsTodo { get ; set ; } = new List <string>
-															{
-																"study in the Library" ,
-																"study in dormitory" ,
-																"study in the Pinxue Building" ,
-																"study in the Liren Building" ,
-																"swim" ,
-																"practice playing piano" ,
-																"practice playing viola" ,
-																"practice playing violin" ,
-																"do homework" ,
-																"watch ducks" ,
-																"watch PornHub" ,
-																"watch Youtube"
-															} ;
+		private List <string> ThingsTodo { get ; } = new List <string>
+													{
+														"study in the Library" ,
+														"study in dormitory" ,
+														"study in the Pinxue Building" ,
+														"study in the Liren Building" ,
+														"swim" ,
+														"practice playing piano" ,
+														"practice playing viola" ,
+														"practice playing violin" ,
+														"do homework" ,
+														"watch ducks" ,
+														"watch PornHub" ,
+														"watch Youtube"
+													} ;
 
 		public Label YearMonthLabel { get ; set ; }
 
@@ -125,6 +125,8 @@ namespace LoseChiCalendar . Pages
 
 		public void UpdateView ( )
 		{
+			Frame . PauseRedraw ( ) ;
+
 			CultureInfo cultureInfo = new CultureInfo ( "en-US" ) ;
 
 			DateTimeFormatInfo dateTimeFormat = cultureInfo . DateTimeFormat ;
@@ -146,7 +148,7 @@ namespace LoseChiCalendar . Pages
 
 				if ( MonthCalendarContainer != null )
 				{
-					MonthCalendarContainer . Content = ( canvas ) ;
+					MonthCalendarContainer . Content = canvas ;
 				}
 
 				MonthCalendarDate = CurrentDateTime . Date ;
@@ -159,9 +161,7 @@ namespace LoseChiCalendar . Pages
 				{
 					Label label = new Label
 								{
-									Text            = ( dayNames [ i ] ) ,
-									HorizontalAlign = ContentHorizontalAlign . Left ,
-									Width           = 3
+									Text = dayNames [ i ] , HorizontalAlign = ContentHorizontalAlign . Left , Width = 3
 								} ;
 
 					if ( i   == 0
@@ -172,7 +172,7 @@ namespace LoseChiCalendar . Pages
 
 					canvas . Items . Add ( label ) ;
 
-					canvas [ label ] = new Point ( ( 6 * i ) + 1 , y ) ;
+					canvas [ label ] = new Point ( 6 * i + 1 , y ) ;
 				}
 
 				y++ ;
@@ -269,7 +269,7 @@ namespace LoseChiCalendar . Pages
 
 				for ( int i = weekday ; i < 7 ; i++ )
 				{
-					int day = ( i - weekday ) + 1 ;
+					int day = i - weekday + 1 ;
 
 					Button button = new Button
 									{
@@ -336,6 +336,8 @@ namespace LoseChiCalendar . Pages
 
 					ImproperThingsTodoContainer . Items . Add ( thingLabel ) ;
 				}
+
+				Frame . ResumeRedraw ( ) ;
 			}
 		}
 

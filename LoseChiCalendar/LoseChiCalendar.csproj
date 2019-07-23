@@ -1,8 +1,17 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" >
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Version>1.0.0.0</Version>
+    <Authors>Wencey Wang</Authors>
+    <Company>Dream Recovery</Company>
+    <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
+    <Copyright>Wencey Wang (c) 2019</Copyright>
+    <PackageProjectUrl>https://vsts.dreamry.org/DefaultCollection/LoseChiCalendar</PackageProjectUrl>
+    <RepositoryUrl>https://vsts.dreamry.org/DefaultCollection/LoseChiCalendar</RepositoryUrl>
+    <RepositoryType>TFS</RepositoryType>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FoggyConsole" Version="0.1.2.24" />
+    <PackageReference Include="FoggyConsole" Version="0.1.2.26" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.2.0" />
   </ItemGroup>
