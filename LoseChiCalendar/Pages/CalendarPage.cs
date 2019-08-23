@@ -189,9 +189,9 @@ namespace LoseChiCalendar . Pages
 
 				int daysBefore = weekday ;
 
-				bool newLine ;
+				bool newLine = ( daysBefore == 0 ) ;
 
-				if ( newLine = ( daysBefore == 0 ) )
+				if ( newLine )
 				{
 					daysBefore = 7 ;
 				}
