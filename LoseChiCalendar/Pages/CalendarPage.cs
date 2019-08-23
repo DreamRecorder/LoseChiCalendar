@@ -125,7 +125,7 @@ namespace LoseChiCalendar . Pages
 
 		public void UpdateView ( )
 		{
-			Frame . PauseRedraw ( ) ;
+			ViewRoot ? . PauseRedraw ( ) ;
 
 			CultureInfo cultureInfo = new CultureInfo ( "en-US" ) ;
 
@@ -140,7 +140,7 @@ namespace LoseChiCalendar . Pages
 			{
 				#region Update Month Calendar
 
-				bool changeFocus = FocusManager . Current ? . FocusedControl ? . Container ? . Container
+				bool changeFocus = ViewRoot ? . Application . FocusManager . FocusedControl ? . Container ? . Container
 									== MonthCalendarContainer ;
 
 
@@ -187,9 +187,18 @@ namespace LoseChiCalendar . Pages
 
 				int daysInPrevMonth = DateTime . DaysInMonth ( prevMonth . Year , prevMonth . Month ) ;
 
-				for ( int i = 0 ; i < weekday ; i++ )
+				int daysBefore = weekday ;
+
+				bool newLine ;
+
+				if ( newLine = ( daysBefore == 0 ) )
 				{
-					int day = daysInPrevMonth - ( weekday - i ) + 1 ;
+					daysBefore = 7 ;
+				}
+
+				for ( int i = 0 ; i < daysBefore ; i++ )
+				{
+					int day = daysInPrevMonth - ( daysBefore - i ) + 1 ;
 
 					Button button = new Button
 									{
@@ -206,6 +215,11 @@ namespace LoseChiCalendar . Pages
 					canvas . Items . Add ( button ) ;
 
 					canvas [ button ] = new Point ( 6 * i , y ) ;
+				}
+
+				if ( newLine )
+				{
+					y++ ;
 				}
 
 				for ( int i = 1 ; i <= daysInMonth ; i++ )
@@ -240,9 +254,9 @@ namespace LoseChiCalendar . Pages
 						button . ForegroundColor = ConsoleColor . Green ;
 						if ( changeFocus )
 						{
-							if ( FocusManager . Current != null )
+							if ( ViewRoot ? . Application . FocusManager != null )
 							{
-								FocusManager . Current . FocusedControl = button ;
+								ViewRoot . Application . FocusManager . FocusedControl = button ;
 							}
 						}
 					}
@@ -273,7 +287,7 @@ namespace LoseChiCalendar . Pages
 
 					Button button = new Button
 									{
-										Name            = $"buttonPrev{day}" ,
+										Name            = $"buttonNext{day}" ,
 										Text            = $"{day}" ,
 										HorizontalAlign = ContentHorizontalAlign . Right ,
 										Width           = 5 ,
@@ -286,6 +300,33 @@ namespace LoseChiCalendar . Pages
 					canvas . Items . Add ( button ) ;
 
 					canvas [ button ] = new Point ( 6 * i , y ) ;
+				}
+
+				if ( y < 6 )
+				{
+					y++ ;
+
+					for ( int i = 0 ; i < 7 ; i++ )
+					{
+						int day = i - weekday + 8 ;
+
+						Button button = new Button
+										{
+											Name            = $"buttonNext{day}" ,
+											Text            = $"{day}" ,
+											HorizontalAlign = ContentHorizontalAlign . Right ,
+											Width           = 5 ,
+											Tag =
+												new DateTime ( nextMonth . Year , nextMonth . Month , day ) ,
+											ForegroundColor = ConsoleColor . DarkGray
+										} ;
+
+						button . Pressed += DateButton_Pressed ;
+
+						canvas . Items . Add ( button ) ;
+
+						canvas [ button ] = new Point ( 6 * i , y ) ;
+					}
 				}
 
 				#endregion
@@ -337,7 +378,7 @@ namespace LoseChiCalendar . Pages
 					ImproperThingsTodoContainer . Items . Add ( thingLabel ) ;
 				}
 
-				Frame . ResumeRedraw ( ) ;
+				ViewRoot ? . ResumeRedraw ( ) ;
 			}
 		}
 

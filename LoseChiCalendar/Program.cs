@@ -21,20 +21,36 @@ namespace LoseChiCalendar
 	/// <summary>
 	///     黄欣然用来找工作的玄学指导老黄历
 	/// </summary>
-	public sealed class Program : ApplicationBase <Program , ProgramExitCode , ProgramSetting , ProgramSettingCatalog>
+	public sealed class Program : ProgramBase <Program , ProgramExitCode , ProgramSetting , ProgramSettingCatalog>
 	{
 
-		public override bool WaitForStart => false ;
-
 		public override string License => GetLicense ( ) ;
+
+		public override bool CanExit => true ;
+
+		public override bool HandleInput => true ;
 
 		public override bool LoadSetting => true ;
 
 		public override bool AutoSaveSetting => true ;
 
-		public Program ( ) { Name = "LoseChiCalendar" ; }
+		public string Name => "LoseChiCalendar" ;
+
+		public override bool MainThreadWait => true ;
+
+		public Application Application { get ; set ; }
 
 		public static void Main ( string [ ] args ) { new Program ( ) . RunMain ( args ) ; }
+
+		public override void Start ( string [ ] args )
+		{
+			Application = new Application ( LocalConsole . Current , PrepareViewRoot )
+						{
+							Name = Name , IsDebug = IsDebug
+						} ;
+
+			Application . Start ( ) ;
+		}
 
 		public override void ConfigureLogger ( ILoggingBuilder builder )
 		{
@@ -57,19 +73,19 @@ namespace LoseChiCalendar
 								@"This is free software, and you are welcome to redistribute it under certain conditions; read License.txt for details." ) ;
 		}
 
-		public override Frame PrepareViewRoot ( )
-		{
-			ViewRoot = new Frame ( ) ;
-			Page page = new CalendarPage ( ) ;
-			ViewRoot . NavigateTo ( page ) ;
+		public override void OnExit ( ProgramExitCode code ) { Application . Stop ( ) ; }
 
-			return ViewRoot ;
+		public Frame PrepareViewRoot ( )
+		{
+			Frame viewRoot = new Frame ( ) ;
+			Page  page     = new CalendarPage ( ) ;
+			viewRoot . NavigateTo ( page ) ;
+
+			return viewRoot ;
 		}
 
 
-		public string GetLicense ( ) { return typeof ( Program ) . GetResourceFile ( @"License.AGPL.txt" ) ; }
-
-		public override void OnExit ( ProgramExitCode code ) { base . OnExit ( code ) ; }
+		public string GetLicense ( ) => typeof ( Program ) . GetResourceFile ( @"License.AGPL.txt" ) ;
 
 	}
 
