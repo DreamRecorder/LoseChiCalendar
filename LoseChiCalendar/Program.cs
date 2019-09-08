@@ -6,6 +6,7 @@ using System . Linq ;
 
 using DreamRecorder . FoggyConsole ;
 using DreamRecorder . FoggyConsole . Controls ;
+using DreamRecorder . FoggyConsole . LocalConsole ;
 using DreamRecorder . ToolBox . CommandLine ;
 using DreamRecorder . ToolBox . General ;
 
@@ -45,9 +46,9 @@ namespace LoseChiCalendar
 		public override void Start ( string [ ] args )
 		{
 			Application = new Application ( LocalConsole . Current , PrepareViewRoot )
-						{
-							Name = Name , IsDebug = IsDebug
-						} ;
+						  {
+							  Name = Name , IsDebug = IsDebug
+						  } ;
 
 			Application . Start ( ) ;
 		}
@@ -67,10 +68,10 @@ namespace LoseChiCalendar
 		public override void ShowCopyright ( )
 		{
 			Console . WriteLine (
-								$"LoseChiCalendar Copyright (C) 2019 - {DateTime . Now . Year} Xinran Huang and Wencey Wang, made with luv." ) ;
+								 $"LoseChiCalendar Copyright (C) 2019 - {DateTime . Now . Year} Xinran Huang and Wencey Wang, made with luv." ) ;
 			Console . WriteLine ( @"This program comes with ABSOLUTELY NO WARRANTY." ) ;
 			Console . WriteLine (
-								@"This is free software, and you are welcome to redistribute it under certain conditions; read License.txt for details." ) ;
+								 @"This is free software, and you are welcome to redistribute it under certain conditions; read License.txt for details." ) ;
 		}
 
 		public override void OnExit ( ProgramExitCode code ) { Application . Stop ( ) ; }

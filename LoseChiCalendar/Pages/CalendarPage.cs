@@ -18,20 +18,20 @@ namespace LoseChiCalendar . Pages
 		private DateTime _currentDateTime = DateTime . Now . Date ;
 
 		private List <string> ThingsTodo { get ; } = new List <string>
-													{
-														"study in the Library" ,
-														"study in dormitory" ,
-														"study in the Pinxue Building" ,
-														"study in the Liren Building" ,
-														"swim" ,
-														"practice playing piano" ,
-														"practice playing viola" ,
-														"practice playing violin" ,
-														"do homework" ,
-														"watch ducks" ,
-														"watch PornHub" ,
-														"watch Youtube"
-													} ;
+													 {
+														 "study in the Library" ,
+														 "study in dormitory" ,
+														 "study in the Pinxue Building" ,
+														 "study in the Liren Building" ,
+														 "swim" ,
+														 "practice playing piano" ,
+														 "practice playing viola" ,
+														 "practice playing violin" ,
+														 "do homework" ,
+														 "watch ducks" ,
+														 "watch PornHub" ,
+														 "watch Youtube"
+													 } ;
 
 		public Label YearMonthLabel { get ; set ; }
 
@@ -82,8 +82,8 @@ namespace LoseChiCalendar . Pages
 
 		public CalendarPage ( ) : base (
 										XDocument . Parse (
-															typeof ( CalendarPage ) . GetResourceFile (
-																										@"CalendarPage.xml" ) ) .
+														   typeof ( CalendarPage ) . GetResourceFile (
+																									  @"CalendarPage.xml" ) ) .
 													Root )
 		{
 			YearMonthLabel              = Find <Label> ( nameof ( YearMonthLabel ) ) ;
@@ -141,7 +141,7 @@ namespace LoseChiCalendar . Pages
 				#region Update Month Calendar
 
 				bool changeFocus = ViewRoot ? . Application . FocusManager . FocusedControl ? . Container ? . Container
-									== MonthCalendarContainer ;
+								   == MonthCalendarContainer ;
 
 
 				Canvas canvas = new Canvas ( ) ;
@@ -160,12 +160,14 @@ namespace LoseChiCalendar . Pages
 				for ( int i = 0 ; i < 7 ; i++ )
 				{
 					Label label = new Label
-								{
-									Text = dayNames [ i ] , HorizontalAlign = ContentHorizontalAlign . Left , Width = 3
-								} ;
+								  {
+									  Text            = dayNames [ i ] ,
+									  HorizontalAlign = ContentHorizontalAlign . Left ,
+									  Width           = 3
+								  } ;
 
-					if ( i   == 0
-						|| i == 6 )
+					if ( i    == 0
+						 || i == 6 )
 					{
 						label . ForegroundColor = ConsoleColor . Red ;
 					}
@@ -243,8 +245,8 @@ namespace LoseChiCalendar . Pages
 						button . KeyBind = i . ToString ( ) . Last ( ) ;
 					}
 
-					if ( weekday   == 0
-						|| weekday == 6 )
+					if ( weekday    == 0
+						 || weekday == 6 )
 					{
 						button . ForegroundColor = ConsoleColor . Cyan ;
 					}
@@ -370,10 +372,10 @@ namespace LoseChiCalendar . Pages
 					}
 
 					Label thingLabel = new Label
-										{
-											Text            = thingsTodo [ i + properThingsCount ] ,
-											ForegroundColor = ConsoleColor . Blue
-										} ;
+									   {
+										   Text            = thingsTodo [ i + properThingsCount ] ,
+										   ForegroundColor = ConsoleColor . Blue
+									   } ;
 
 					ImproperThingsTodoContainer . Items . Add ( thingLabel ) ;
 				}

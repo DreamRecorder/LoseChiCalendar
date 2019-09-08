@@ -1,10 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk" >
 
-  <PropertyGroup Label="Globals">
-    <SccProjectName>SAK</SccProjectName>
-    <SccProvider>SAK</SccProvider>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccLocalPath>SAK</SccLocalPath>
+  <PropertyGroup Label="Globals" >
+    <SccProjectName>%24/LoseChiCalendar/LoseChiCalendar</SccProjectName>
+    <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
+    <SccAuxPath>https://vsts.dreamry.org/defaultcollection</SccAuxPath>
+    <SccLocalPath>.</SccLocalPath>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -22,17 +22,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Pages\CalendarPage.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="License\AGPL.txt" />
     <EmbeddedResource Include="Pages\CalendarPage.xml" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="DreamRecorder.ToolBox.CommandLine" Version="1.1.4.67" />
-    <PackageReference Include="FoggyConsole" Version="0.2.0.3" />
+    <PackageReference Include="FoggyConsole.LocalConsole" Version="0.2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.2.0" />
   </ItemGroup>
