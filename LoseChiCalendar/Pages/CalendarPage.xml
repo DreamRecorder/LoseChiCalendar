@@ -8,16 +8,14 @@
       <Label Name="DayNameLabel" Text="Sunday" HorizontalAlign="Center" />
       <Button Name="ExitButton" Text="Exit" KeyBind="E" />
     </StackPanel>
-    <StackPanel Container.Item="2,0,1,1" HorizontalAlign="Left" >
-      <Grid>
-        <Button Name="PreviousMonthButton" Text="PrevMonth" KeyBind="P" HorizontalAlign="Left" />
-        <Label Name="YearMonthLabel2" Text="June 2019" HorizontalAlign="Center" />
-        <Button Name="NextMonthButton" Text="NextMonth" KeyBind="N" HorizontalAlign="Right" />
-      </Grid>
-      <Container Name="MonthCalendarContainer" Height="7" AutoHeoght="false" >
+    <Grid Container.Item="2,0,1,1" ColumnsData="-1,-1,-1,-1,-1,-1,-1" RowData="-1,-1,-1,-1,-1,-1,-1,-1,-1">
+      <Button Container.Item="0,0,7,1" Name="PreviousMonthButton" Text="PrevMonth" KeyBind="P" HorizontalAlign="Left" />
+      <Label Container.Item="0,0,7,1"  Name="YearMonthLabel2" Text="June 2019" HorizontalAlign="Center" />
+      <Button Container.Item="0,0,7,1" Name="NextMonthButton" Text="NextMonth" KeyBind="N" HorizontalAlign="Right" />
+      <Container Name="MonthCalendarContainer" Container.Item="0,1,7,7" Height="7" AutoHeight="false" >
       </Container>
-      <Button Name="TodayButton" Text="Today" KeyBind="T" />
-    </StackPanel>
+      <Button Name="TodayButton" Text="Today" KeyBind="T" Container.Item="0,8,7,1"/>
+    </Grid>
   </Grid>
   <StackPanel>
     <HorizontalStackPanel>

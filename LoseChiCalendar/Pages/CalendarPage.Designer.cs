@@ -240,7 +240,7 @@ namespace LoseChiCalendar . Pages
 
 					button . Pressed += DateButton_Pressed ;
 
-					if ( i < 11 )
+					if ( i <= 10 )
 					{
 						button . KeyBind = i . ToString ( ) . Last ( ) ;
 					}
