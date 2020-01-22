@@ -7,9 +7,10 @@ using System . Xml . Linq ;
 
 using DreamRecorder . FoggyConsole ;
 using DreamRecorder . FoggyConsole . Controls ;
+using DreamRecorder.LoseChiCalendar;
 using DreamRecorder . ToolBox . General ;
 
-namespace LoseChiCalendar . Pages
+namespace DreamRecorder.LoseChiCalendar . Pages
 {
 
 	public sealed class CalendarPage : Page
@@ -17,6 +18,9 @@ namespace LoseChiCalendar . Pages
 
 		private DateTime _currentDateTime = DateTime . Now . Date ;
 
+		/// <summary>
+		/// Things to do, current preset value is based on previous Mizunara's suggestion
+		/// </summary>
 		private List <string> ThingsTodo { get ; } = new List <string>
 													 {
 														 "study in the Library" ,

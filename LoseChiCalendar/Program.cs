@@ -1,22 +1,15 @@
-﻿using System ;
-using System . Collections ;
-using System . Collections . Generic ;
-using System . Diagnostics . CodeAnalysis ;
-using System . Linq ;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using DreamRecorder.FoggyConsole;
+using DreamRecorder.FoggyConsole.Controls;
+using DreamRecorder.FoggyConsole.LocalConsole;
+using DreamRecorder.LoseChiCalendar.Pages;
+using DreamRecorder.ToolBox.CommandLine;
+using DreamRecorder.ToolBox.General;
+using Microsoft.Extensions.Logging;
+using WenceyWang.FIGlet;
 
-using DreamRecorder . FoggyConsole ;
-using DreamRecorder . FoggyConsole . Controls ;
-using DreamRecorder . FoggyConsole . LocalConsole ;
-using DreamRecorder . ToolBox . CommandLine ;
-using DreamRecorder . ToolBox . General ;
-
-using LoseChiCalendar . Pages ;
-
-using Microsoft . Extensions . Logging ;
-
-using WenceyWang . FIGlet ;
-
-namespace LoseChiCalendar
+namespace DreamRecorder.LoseChiCalendar
 {
 
 	/// <summary>
@@ -68,7 +61,7 @@ namespace LoseChiCalendar
 		public override void ShowCopyright ( )
 		{
 			Console . WriteLine (
-								 $"LoseChiCalendar Copyright (C) 2019 - {DateTime . Now . Year} Xinran Huang and Wencey Wang, made with luv." ) ;
+								 $"LoseChiCalendar Copyright (C) 2019 - {DateTime . Now . Year} Xinran Huang and Wencey Wang, made with image-build luv." ) ;
 			Console . WriteLine ( @"This program comes with ABSOLUTELY NO WARRANTY." ) ;
 			Console . WriteLine (
 								 @"This is free software, and you are welcome to redistribute it under certain conditions; read License.txt for details." ) ;

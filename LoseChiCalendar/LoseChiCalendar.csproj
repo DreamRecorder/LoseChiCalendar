@@ -10,15 +10,20 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <Version>1.0.0.0</Version>
+    <AssemblyName>DreamRecorder.LoseChiCalendar</AssemblyName>
+    <RootNamespace>DreamRecorder.LoseChiCalendar</RootNamespace>
+    <Version>1.0.0.$([MSBuild]::ValueOrDefault('$(SourceVersion)', '0'))</Version>
     <Authors>Wencey Wang</Authors>
     <Company>Dream Recovery</Company>
     <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
-    <Copyright>Wencey Wang (c) 2019</Copyright>
+    <Copyright>Wencey Wang (c) $([System.DateTime]::UtcNow.Year)</Copyright>
     <PackageProjectUrl>https://vsts.dreamry.org/DefaultCollection/LoseChiCalendar</PackageProjectUrl>
     <RepositoryUrl>https://vsts.dreamry.org/DefaultCollection/LoseChiCalendar</RepositoryUrl>
     <RepositoryType>TFS</RepositoryType>
     <NeutralLanguage>en</NeutralLanguage>
+    <InformationalVersion>Code version "$(SourceVersion)" build by "$([System.Environment]::GetEnvironmentVariable("UserDomain"))\$([System.Environment]::GetEnvironmentVariable("UserName"))" at "$([System.DateTime]::UtcNow.ToString())"</InformationalVersion>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,10 +32,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DreamRecorder.ToolBox.CommandLine" Version="1.1.4.70" />
-    <PackageReference Include="FoggyConsole.LocalConsole" Version="0.2.1.6" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
+    <PackageReference Include="DreamRecorder.ToolBox.CommandLine" Version="1.1.5.475" />
+    <PackageReference Include="FoggyConsole.LocalConsole" Version="0.2.2.476" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.1" />
   </ItemGroup>
 
 </Project>
