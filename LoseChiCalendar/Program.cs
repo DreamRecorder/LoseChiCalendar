@@ -1,15 +1,18 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using DreamRecorder.FoggyConsole;
-using DreamRecorder.FoggyConsole.Controls;
-using DreamRecorder.FoggyConsole.LocalConsole;
-using DreamRecorder.LoseChiCalendar.Pages;
-using DreamRecorder.ToolBox.CommandLine;
-using DreamRecorder.ToolBox.General;
-using Microsoft.Extensions.Logging;
-using WenceyWang.FIGlet;
+﻿using System ;
+using System . Diagnostics . CodeAnalysis ;
 
-namespace DreamRecorder.LoseChiCalendar
+using DreamRecorder . FoggyConsole ;
+using DreamRecorder . FoggyConsole . Controls ;
+using DreamRecorder . FoggyConsole . LocalConsole ;
+using DreamRecorder . LoseChiCalendar . Pages ;
+using DreamRecorder . ToolBox . CommandLine ;
+using DreamRecorder . ToolBox . General ;
+
+using Microsoft . Extensions . Logging ;
+
+using WenceyWang . FIGlet ;
+
+namespace DreamRecorder . LoseChiCalendar
 {
 
 	/// <summary>
@@ -30,7 +33,7 @@ namespace DreamRecorder.LoseChiCalendar
 
 		public string Name => "LoseChiCalendar" ;
 
-		public override bool MainThreadWait => true ;
+		public override bool WaitForExit => true ;
 
 		public Application Application { get ; set ; }
 
@@ -39,9 +42,9 @@ namespace DreamRecorder.LoseChiCalendar
 		public override void Start ( string [ ] args )
 		{
 			Application = new Application ( LocalConsole . Current , PrepareViewRoot )
-						  {
-							  Name = Name , IsDebug = IsDebug
-						  } ;
+						{
+							Name = Name , IsDebug = IsDebug
+						} ;
 
 			Application . Start ( ) ;
 		}
@@ -61,10 +64,10 @@ namespace DreamRecorder.LoseChiCalendar
 		public override void ShowCopyright ( )
 		{
 			Console . WriteLine (
-								 $"LoseChiCalendar Copyright (C) 2019 - {DateTime . Now . Year} Xinran Huang and Wencey Wang, made with image-build luv." ) ;
+								$"LoseChiCalendar Copyright (C) 2019 - {DateTime . Now . Year} Xinran Huang and Wencey Wang, made with image-build luv." ) ;
 			Console . WriteLine ( @"This program comes with ABSOLUTELY NO WARRANTY." ) ;
 			Console . WriteLine (
-								 @"This is free software, and you are welcome to redistribute it under certain conditions; read License.txt for details." ) ;
+								@"This is free software, and you are welcome to redistribute it under certain conditions; read License.txt for details." ) ;
 		}
 
 		public override void OnExit ( ProgramExitCode code ) { Application . Stop ( ) ; }
@@ -79,7 +82,7 @@ namespace DreamRecorder.LoseChiCalendar
 		}
 
 
-		public string GetLicense ( ) => typeof ( Program ) . GetResourceFile ( @"License.AGPL.txt" ) ;
+		public string GetLicense ( ) => typeof ( Program ) . GetResourceFileString ( @"License.AGPL.txt" ) ;
 
 	}
 
